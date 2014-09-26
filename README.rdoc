@@ -10,10 +10,10 @@ Mifos Messenger is a sinatra web application which receives hook data from
 Mifos X webhooks. Mifos Messenger currently handles the following Mifos X
 events:
 
- X-Mifos-Entity :: X-Mifos-Action
- Loan :: Repayment
- Savings :: Deposit
- Savings :: Withdrawal
+X-Mifos-Entity :: X-Mifos-Action
+Loan :: Repayment
+Savings :: Deposit
+Savings :: Withdrawal
 
 Mifos Messenger currently supports sending transactional SMS to any mobile
 number in India including DND and NDNC registered numbers. See http://ndnc.in/
