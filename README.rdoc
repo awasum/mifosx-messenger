@@ -1,50 +1,52 @@
-= mifosx-messenger
+= MifosX Messenger
 
-Mifos X Automatic BulkSMS Sending App
+Mifos X automatic BulkSMS Sending App
 
 * http://github.com/SanjoseSolutions/mifos-messenger
 
 == DESCRIPTION:
 
-FIX (describe your package)
+Mifos Messenger is a sinatra web application which receives hook data from
+Mifos X webhooks. Mifos Messenger currently handles the following Mifos X
+events:
 
-== FEATURES/PROBLEMS:
+ X-Mifos-Entity :: X-Mifos-Action
+ Loan :: Repayment
+ Savings :: Deposit
+ Savings :: Withdrawal
 
-* FIX (list of features or problems)
+Mifos Messenger currently supports sending transactional SMS to any mobile
+number in India including DND and NDNC registered numbers. See http://ndnc.in/
+Currently implements TBulkSMS API transactional messages, but is extensible to
+support other providers as well.
 
-== SYNOPSIS:
+== FEATURES:
 
-  FIX (code sample of usage)
+Send automatic SMS from Mifos X installation triggered by webhooks.  Configure
+webhooks for loan repayment, savings deposit, withdrawal to point to this
+application URL.
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* Mifos Messenger requires these gems: httpclient, json, sinatra,
+  sinatra-contrib
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+ $ gem install httpclient
+ $ gem install json
+ $ gem install sinatra
+ $ gem install sinatra-contrib
+
+Configure your MifosX and TBulkSMS settings in config.yml
+
+To test run, type ruby app.rb from the project directory. To deploy, see
+http://recipes.sinatrarb.com/p/deployment
 
 == LICENSE:
 
-(The MIT License)
+Copyright (c) 2014 SanJose Solutions
 
-Copyright (c) 2014 FIXME full name
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+This software is released under the GNU General Public License version 3: 
+http://www.gnu.org/licenses/gpl.html.  A copy of the license is included in the
+file COPYING inlcuded with this software
