@@ -1,0 +1,14 @@
+MifosOptions:
+  baseUrl: 'https://demo.openmf.org/mifosng-provider/api/v1'
+  tenantId: default
+  user: mifos
+  pass: password
+MessageSender:
+  class: TBulkSMSSender
+  options:
+    uri: 'http://login.tbulksms.com/API/WebSMS/Http/v1.0a/index.php'
+    userid: # you TBulkSMS customerid
+    password: # your TBulkSMS API key
+    format: json
+    route_id: # your TBulkSMS transactional route id
+    sender: WEBSMS
