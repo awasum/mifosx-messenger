@@ -1,4 +1,5 @@
 require 'test/unit'
+require_relative File.dirname(__FILE__) + '/../lib/mifosx-messenger'
 
 class TestMifosxHelper < Test::Unit::TestCase
 

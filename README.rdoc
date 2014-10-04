@@ -4,34 +4,33 @@ Mifos X automatic BulkSMS Sending App
 
 * http://github.com/SanjoseSolutions/mifos-messenger
 
-== DESCRIPTION:
+== Description
 
 Mifos Messenger is a sinatra web application which receives hook data from
 Mifos X webhooks. Mifos Messenger currently handles the following Mifos X
 events:
 
-*X-Mifos-Entity* :: *X-Mifos-Action*
-loan :: repayment
-savings :: deposit
-savings :: withdrawal
+*X-Mifos-Entity*::*X-Mifos-Action*
+loan::repayment
+savings::deposit
+savings::withdrawal
 
-Mifos Messenger currently supports sending transactional SMS to any mobile
+MifosX Messenger currently supports sending transactional SMS to any mobile
 number in India including DND and NDNC registered numbers. See http://ndnc.in/
 Currently implements TBulkSMS API transactional messages, but is extensible to
 support other providers as well.
 
-== FEATURES:
+== Features
 
 Send automatic SMS from Mifos X installation triggered by webhooks.  Configure
 webhooks for loan repayment, savings deposit, withdrawal to point to this
 application URL.
 
-== REQUIREMENTS:
+== Requirements
 
-* Mifos Messenger requires these gems: httpclient, json, sinatra,
-  sinatra-contrib
+Mifos Messenger requires these gems: httpclient, json, sinatra, sinatra-contrib
 
-== INSTALL:
+== Install
 
  $ gem install httpclient
  $ gem install json
@@ -43,7 +42,7 @@ Configure your MifosX and TBulkSMS settings in config.yml
 To test run, type ruby app.rb from the project directory. To deploy, see
 http://recipes.sinatrarb.com/p/deployment
 
-== LICENSE:
+== License
 
 Copyright (c) 2014 SanJose Solutions
 
