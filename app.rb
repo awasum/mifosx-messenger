@@ -42,20 +42,22 @@ post '/' do
 			case path
 			when "LOAN.REPAYMENT"
 				loanId = data["loanId"]
-				loan = mifosx.get_loan(loanId, :fields => [ 'summary' ] )	# get outstanding
+				loan = mifosx.get_loan(loanId, :fields => [ 'summary', 'currency', 'accountNo' ] )	# get outstanding
 				trans = mifosx.get_loan_transaction(loanId, rId,
 					:fields => [ 'type', 'currency', 'amount' ] ) # get amount
 				message = template.loan_repayment(client, loan, trans)
-			when "SAVINGS.DEPOSIT"
+			when "SAVINGSACCOUNT.DEPOSIT"
 				savingsId = data["savingsId"]
+				savings = mifosx.get_savings(savingsId)
 				trans = mifosx.get_savings_transaction(savingsId, rId,
-					:fields => [ 'transactionType', 'currency', 'amount', 'runningBalance' ] )
-				message = template.savings_deposit(client, trans)
-			when "SAVINGS.WITHDRAWAL"
+					:fields => [ 'amount', 'runningBalance' ] )
+				message = template.savings_deposit(client, savings, trans)
+			when "SAVINGSACCOUNT.WITHDRAWAL"
 				savingsId = data["savingsId"]
+				savings = mifosx.get_savings(savingsId)
 				trans = mifosx.get_savings_transaction(savingsId, rId,
-					:fields => [ 'transactionType', 'currency', 'amount', 'runningBalance' ] )
-				message = template.savings_withdrawal(client, trans)
+					:fields => [ 'amount', 'runningBalance' ] )
+				message = template.savings_withdrawal(client, savings, trans)
 			end
 			if number
 				logger.info "Number: " + number

@@ -19,7 +19,7 @@ module MifosXMessenger
 			params['message'] = message
 
 			client = HTTPClient.new(:agent_name => 'MyAgent/0.1')
-			client.post(uri, params)
+			client.post(@uri, params)
 		end
 	end
 end
