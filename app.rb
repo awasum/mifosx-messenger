@@ -1,7 +1,3 @@
-require 'sinatra'
-require 'sinatra/config_file'
-require 'json'
-
 config_file 'config.yml'
 require_relative 'lib/mifosx-messenger'
 
@@ -59,15 +55,12 @@ post '/' do
 					:fields => [ 'amount', 'runningBalance' ] )
 				message = template.savings_withdrawal(client, savings, trans)
 			end
-			if number
+			if number and number.length >= 10
 				logger.info "Number: " + number
-			end
-			if message
-				logger.info "Message: " + message
-			end
-			if message and number and number.length >= 10
-				logger.info "Sending SMS.."
-				messageSender.send_sms(number, message)
+        if message
+          logger.info "Sending Message: " + message
+          messageSender.send_sms(number, message)
+        end
 			end
 		end
 	end

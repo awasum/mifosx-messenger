@@ -1,4 +1,5 @@
-require 'httpclient'
+require 'open-uri'
+require 'net/http'
 require_relative 'message-sender'
 
 module MifosXMessenger
@@ -8,10 +9,14 @@ module MifosXMessenger
 		@client = nil
 
 		def initialize(options = {})
-			@uri = options['uri'] || 'https://api.mVaayoo.com/mvaayooapi/MessageCompose'
+			uri = options['uri'] || 'https://api.mVaayoo.com/mvaayooapi/MessageCompose'
 			@params = options
-			@client = HTTPClient.new(:agent_name => 'MyAgent/0.1')
-			@client.ssl_config.set_trust_ca('/tmp/Go_Daddy_Root_Certificate_Authority_-_G2.crt')
+			@uri = URI.parse(uri)
+			@client = Net::HTTP.new(@uri.host, @uri.port)
+			if @uri.scheme == 'https'
+				@client.use_ssl = true
+				@client.verify_mode = OpenSSL::SSL::VERIFY_NONE
+			end
 		end
 
 		def send_sms(number, message)
@@ -19,7 +24,9 @@ module MifosXMessenger
 			params['recipientno'] = number
 			params['msgtxt'] = message
 
-			@client.get(@uri, params)
+      querystr = params.map{|k,v|k+'='+v.to_s}.join('&')
+			res = @client.request_get(@uri.request_uri + '?' + querystr)
+			puts "SMS Request Sent. Response: " + res.body
 		end
 	end
 end

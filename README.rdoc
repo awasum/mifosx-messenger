@@ -32,10 +32,9 @@ Mifos Messenger requires these gems: httpclient, json, sinatra, sinatra-contrib
 
 == Install
 
- $ gem install httpclient
- $ gem install json
- $ gem install sinatra
- $ gem install sinatra-contrib
+Mifos X Messenger installation is now simplified. Just run this command:
+
+ $ bundle install
 
 Configure your MifosX and TBulkSMS settings in config.yml
 
