@@ -4,11 +4,9 @@ MifosOptions:
   user: mifos
   pass: password
 MessageSender:
-  class: TBulkSMSSender
+  class: Sol4MobSender
   options:
-    uri: 'http://login.tbulksms.com/API/WebSMS/Http/v1.0a/index.php'
-    userid: # you TBulkSMS customerid
-    password: # your TBulkSMS API key
-    format: json
-    route_id: # your TBulkSMS transactional route id
-    sender: WEBSMS
+    uri: 'http://demo3275.sms-providers.com'
+    username: 'walter@resilientsystems.co'
+    password: '060A31AD'
+MessageSignature: ' - Regards, MxMessenger'
