@@ -13,9 +13,9 @@ get '/' do
 end
 
 post '/' do
-	apiKey = request_header("X-Mifos-API-Key")
-	entity = request_header("X-Mifos-Entity")
-	action = request_header("X-Mifos-Action")
+	apiKey = request_header("X-Fineract-API-Key")
+	entity = request_header("X-Fineract-Entity")
+	action = request_header("X-Fineract-Action")
 
 	if request.body.size > 0
 		data = JSON.parse(request.body.string)
