@@ -11,6 +11,7 @@ module MifosXMessenger
 		@headers = nil
 
 		def initialize(options = {})
+			OpenSSL::SSL::VERIFY_PEER == OpenSSL::SSL::VERIFY_NONE
 			@baseUrl = options['baseUrl'] || 'https://demo.openmf.org/mifosng-provider/api/v1'
 			uri = URI.parse(@baseUrl)
 			tenantId = options['tenantId'] || 'default'
@@ -20,7 +21,7 @@ module MifosXMessenger
 			@http.use_ssl = uri.scheme == 'https'
 			@http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 			@headers = {
-				'X-Mifos-Platform-TenantId' => tenantId,
+				'Fineract-Platform-TenantId' => tenantId,
 				'Authorization' => 'Basic '+Base64.encode64(user+':'+pass).gsub("\n",'')
 			}
 		end

@@ -58,7 +58,7 @@ module MifosXMessenger
       uri = @uri + '/apis/sms/mt/v2/send'
       body = [ {
         'to' => [ number ],
-        'from' => 'MxMsngr',
+        'from' => 'MxMsngr Awasum',
         'message' => message
       } ]
       res = $httpClient.post(uri, body.to_json, {

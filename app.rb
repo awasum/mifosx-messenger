@@ -1,3 +1,8 @@
+require 'sinatra'
+require 'json'
+require 'httpclient'
+require 'sinatra/config_file'
+
 config_file 'config.yml'
 require_relative 'lib/mifosx-messenger'
 
@@ -13,9 +18,9 @@ get '/' do
 end
 
 post '/' do
-	apiKey = request_header("X-Mifos-API-Key")
-	entity = request_header("X-Mifos-Entity")
-	action = request_header("X-Mifos-Action")
+	apiKey = request_header("X-Fineract-API-Key")
+	entity = request_header("X-Fineract-Entity")
+	action = request_header("X-Fineract-Action")
 
 	if request.body.size > 0
 		data = JSON.parse(request.body.string)
@@ -23,6 +28,7 @@ post '/' do
 
 	if entity
 		if action
+			OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 			mifosx = MifosXMessenger::MifosXHelper.new(settings.MifosOptions)
 			sndrSettings = settings.MessageSender
 			sndrClass, sndrOpts = sndrSettings['class'], sndrSettings['options']
@@ -30,11 +36,12 @@ post '/' do
 			template = MifosXMessenger::MessageTemplates.new(settings.MessageSignature)
 			rId = data["resourceId"]
 			clientId = data["clientId"]
+			OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 			client = mifosx.get_client(clientId, :fields => [ 'displayName', 'mobileNo' ] )
 			number = client['mobileNo']
 			message = nil
 			path = entity+"."+action
-			logger.info "Path: " + path
+			logger.info "Path: " + path " " + number
 			case path
 			when "LOAN.REPAYMENT"
 				loanId = data["loanId"]
@@ -55,7 +62,7 @@ post '/' do
 					:fields => [ 'amount', 'runningBalance' ] )
 				message = template.savings_withdrawal(client, savings, trans)
 			end
-			if number and number.length >= 10
+			if number
 				logger.info "Number: " + number
         if message
           logger.info "Sending Message: " + message

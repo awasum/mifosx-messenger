@@ -1,12 +1,15 @@
 MifosOptions:
-  baseUrl: 'https://demo.openmf.org/mifosng-provider/api/v1'
+  baseUrl: 'https://localhost/fineract-provider/api/v1'
   tenantId: default
-  user: mifos
-  pass: password
+  user: root  
+  pass: Admin123
 MessageSender:
-  class: Sol4MobSender
+  class: TBulkSMSSender
   options:
-    uri: 'http://demo3275.sms-providers.com'
-    username: 'walter@resilientsystems.co'
-    password: '060A31AD'
-MessageSignature: ' - Regards, MxMessenger'
+    uri: 'http://login.tbulksms.com/API/WebSMS/Http/v1.0a/index.php'
+    username: eledor
+    password: insectyaya91
+    format: json
+    route_id: 34
+    sender: Awasum
+MessageSignature: ' - Regards, MxMessenger Awasum'

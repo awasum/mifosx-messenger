@@ -7,6 +7,7 @@ end
 
 require_relative 'mifosx-messenger/mifosx-helper'
 require_relative 'mifosx-messenger/tbulksms-sender'
-require_relative 'mifosx-messenger/mvaayoo-sender'
+#require_relative 'mifosx-messenger/mvaayoo-sender'
 require_relative 'mifosx-messenger/message-templates'
+#require_relative 'mifosx-messenger/sol4mob-sender'
 
