@@ -6,4 +6,5 @@ gem 'sinatra-contrib', '1.4.2'
 gem 'httpclient', '2.5.3.3'
 gem 'json', '1.8.1'
 gem 'twilio-ruby'
+gem "passenger", ">= 5.0.11"
 

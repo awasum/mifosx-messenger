@@ -3,8 +3,8 @@ require 'json'
 require 'httpclient'
 require 'sinatra/config_file'
 
-config_file 'config.yml'
-require_relative 'lib/mifosx-messenger'
+config_file '/config.yml'
+require_relative '/lib/mifosx-messenger'
 
 helpers do
 	def request_header(h)
