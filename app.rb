@@ -3,8 +3,8 @@ require 'json'
 require 'httpclient'
 require 'sinatra/config_file'
 
-config_file '/config.yml'
-require_relative '/lib/mifosx-messenger'
+config_file 'config.yml'
+require_relative 'lib/mifosx-messenger'
 
 helpers do
 	def request_header(h)
@@ -14,7 +14,7 @@ end
 
 get '/' do
 	logger.info "Received GET on /"
-		"Welcome to Mifos Messenger!"
+		"Welcome to SmartFinance Messenger!"
 end
 
 post '/' do
@@ -41,7 +41,7 @@ post '/' do
 			number = client['mobileNo']
 			message = nil
 			path = entity+"."+action
-			logger.info "Path: " + path " " + number
+			logger.info "Path: " + path + " " + number
 			case path
 			when "LOAN.REPAYMENT"
 				loanId = data["loanId"]
