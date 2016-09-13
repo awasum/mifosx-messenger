@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.1.4"
+ruby "2.3.0"
 gem 'sinatra', '1.4.5'
 gem 'sinatra-contrib', '1.4.2'
 gem 'httpclient', '2.5.3.3'
